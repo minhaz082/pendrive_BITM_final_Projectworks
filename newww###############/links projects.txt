@@ -1,0 +1,99 @@
+web essentials 2013
+vswebessentials.com
+
+bootswatch.com or wrapbootsrap
+
+copy min css shortcut
+
+copy full path of cssmin file
+save target as.........
+
+3 ways populate dropdpwn:
+http://www.itorian.com/2013/05/three-ways-to-populate-selected-value.html
+
+-----------------------------------------------------
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace ContosoUniversity.Models
+{
+    public class Student
+    {
+        public int ID { get; set; }
+        public string LastName { get; set; }
+        public string FirstMidName { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime EnrollmentDate { get; set; }
+        
+        public virtual ICollection<Enrollment> Enrollments { get; set; }
+    }
+}
+----------------------------------------------------------------
+
+http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-a-more-complex-data-model-for-an-asp-net-mvc-application
+
+-----------------------------------------------------------------------------
+http://stackoverflow.com/questions/23261917/code-first-data-is-not-inserting-into-database-using-cascading-dropdown-list
+----------------------------------------------------------------------
+web essentials 2013
+vswebessentials.com
+
+bootswatch.com or wrapbootsrap
+
+copy min css shortcut
+
+copy full path of cssmin file
+save target as.........
+
+3 ways populate dropdpwn:
+http://www.itorian.com/2013/05/three-ways-to-populate-selected-value.html
+
+
+-----------------------------
+
+enable-migrations
+
+add-migration 
+
+update-database -verbose
+
+update-database -targetmigration: v
+
+-------------------------------------------------------------------------
+<connectionStrings>
+    <add name="workshopProject" connectionString="Data Source=MINHAZ;Initial Catalog=UniversityTestDB;MultipleActiveResultSets=True;Integrated Security=True" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+--------------------------------------------------------
+constructor in dbset>>>>>
+public TestDBcontext(): base("workshopProject")
+        {
+        }
+--------------------------------------------------------------------------------
+
+context.Departments.AddOrUpdate(x => x.DepartmentId,
+	        new Department() { DepartmentId = 1, Code = "CSE", Name = "Computer" },
+                new Department() { DepartmentId = 2, Code = "EEE", Name = "Electrical" },
+                new Department() { DepartmentId = 3, Code = "PHY", Name = "Physics" },
+                );
+
+-------------------------------------------------------------------------------------------
+
+[Required(ErrorMessage = "Enter Department Name")]
+[Remote("NameExits","Departments",ErrorMessage = "Name already in database")]
+
+
+
+public JsonResult NameExits(string name)
+        {
+            var user = db.Departments.Where(x => x.Name == name).FirstOrDefault();
+            if (user != null)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+
+        }
+
+---------------------------------------------------------------------------------------------------------
